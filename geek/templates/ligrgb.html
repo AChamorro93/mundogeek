@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}BIENVENIDO{% endblock %}
+{% block content %}
+<section>
+    {% for producto in producto %}
+    <div class="card" style="width: 18rem;">
+        <img src="{{producto.imagen.url}}" class="card-img-top" alt="{{producto.nombre}}">
+        <div class="card-body">
+            <h4 class="card-title">{{producto.nombre}}</h4>
+            <p class="card-text">{{producto.descripcion}}</p>
+            <p class="card-price">{{producto.precio}}</p>
+        </div>
+    </div>
+    {% endfor %}
+</section>
+{% endblock %}

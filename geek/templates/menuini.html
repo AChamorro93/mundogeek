@@ -1,0 +1,213 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}BIENVENIDO{% endblock %}
+
+{% block content%}
+<section>
+    <div id="carousel-geek" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <a href="{% url 'pronue' %}"><img src="{% static 'images/img1.png' %}" class="d-block w-100" alt="First slide"></a>
+            </div>
+            <div class="carousel-item">
+                <a href="link2.html"><img src="{% static 'images/img2.jpg' %}" class="d-block w-100" alt="Second slide"></a>
+            </div>
+            <div class="carousel-item">
+                <a href="link3.html"><img src="{% static 'images/img3.png' %}" class="d-block w-100" alt="Third slide"></a>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carousel-geek" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carousel-geek" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    
+    
+
+    <div class="container my-4">
+        <h1 style="color: aliceblue; text-align: center; font-weight: bolder;">PRODUCTOS DESTACADOS</h1>
+        <div class="row">
+            <!-- Card 1 -->
+            <div class="col-md-4 mb-4">
+                <div id="carta1" class="card" style="background-color: rgba(75, 69, 69, 0.616);">
+                    <div id="carouselCarta1" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="{% static 'images/sablenegro1.jpg' %}" class="d-block w-100" alt="Sable 1">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="{% static 'images/sablenegro2.jpg' %}" class="d-block w-100" alt="Sable 2">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselCarta1" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselCarta1" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                    <div class="card-body" style="color: aliceblue; text-align: center;">
+                        <h5 class="card-title">The Acolyte</h5>
+                        <p class="card-text">$599.000 CLP</p>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Card 2 -->
+            <div class="col-md-4 mb-4">
+                <div id="carta2" class="card" style="background-color: rgba(75, 69, 69, 0.616);">
+                    <div id="carouselCarta2" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="{% static 'images/nego1.jpg' %}" class="d-block w-100" alt="Sable 3">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="{% static 'images/nego2.jpg' %}" class="d-block w-100" alt="Sable 4">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselCarta2" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselCarta2" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                    <div class="card-body" style="color: aliceblue; text-align: center;">
+                        <h5 class="card-title">The Negotiator</h5>
+                        <p class="card-text">$145.990 CLP</p>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Card 3 -->
+            <div class="col-md-4 mb-4">
+                <div id="carta3" class="card" style="background-color: rgba(75, 69, 69, 0.616);">
+                    <div id="carouselCarta3" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="{% static 'images/kes1.jpg' %}" class="d-block w-100" alt="Sable 5">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="{% static 'images/kes2.jpg' %}" class="d-block w-100" alt="Sable 6">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselCarta3" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselCarta3" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                    <div class="card-body" style="color: aliceblue; text-align: center;">
+                        <h5 class="card-title">Mandoble Kal Kestis</h5>
+                        <p class="card-text">$639.990 CLP</p>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Card 4 -->
+            <div class="col-md-4 mb-4">
+                <div id="carta4" class="card" style="background-color: rgba(75, 69, 69, 0.616);">
+                    <div id="carouselCarta4" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="{% static 'images/luk1.jpg' %}" class="d-block w-100" alt="Sable 1">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="{% static 'images/luk2.jpg' %}" class="d-block w-100" alt="Sable 2">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselCarta4" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselCarta4" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                    <div class="card-body" style="color: aliceblue; text-align: center;">
+                        <h5 class="card-title">Luke Skywalker</h5>
+                        <p class="card-text">$157.990 CLP</p>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Card 5 -->
+            <div class="col-md-4 mb-4">
+                <div id="carta5" class="card" style="background-color: rgba(75, 69, 69, 0.616);">
+                    <div id="carouselCarta5" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="{% static 'images/swo1.jpg' %}" class="d-block w-100" alt="Sable 3">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="{% static 'images/swo2.jpg' %}" class="d-block w-100" alt="Sable 4">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselCarta5" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselCarta5" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                    <div class="card-body" style="color: aliceblue; text-align: center;">
+                        <h5 class="card-title">Sword RGB</h5>
+                        <p class="card-text">$109.9000 CLP</p>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Card 6 -->
+            <div class="col-md-4 mb-4">
+                <div id="carta6" class="card" style="background-color: rgba(75, 69, 69, 0.616);">
+                    <div id="carouselCarta6" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="{% static 'images/youn1.jpg' %}" class="d-block w-100" alt="Sable 5">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="{% static 'images/youn2.jpg' %}" class="d-block w-100" alt="Sable 6">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselCarta6" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselCarta6" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                    <div class="card-body" style="color: aliceblue; text-align: center;">
+                        <h5 class="card-title">Youngling</h5>
+                        <p class="card-text">$50.000 CLP</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>      
+</section>
+<section>
+    <div class="container" style="background-color: rgba(58, 63, 67, 0.623);">
+        <div class="container" style="margin-left:80px;">
+            <img src="{% static 'images/comen.jpg' %}" alt="">
+
+        </div>
+    </div>
+</section>
+{% endblock %}
