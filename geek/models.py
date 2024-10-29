@@ -8,15 +8,16 @@ class Usuario(models.Model):
     telefono = models.CharField(max_length=10)  
 
     def save(self, *args, **kwargs):
-        if not self.pk or not Usuario.objects.filter(pk=self.pk, password=self.password).exists():
+        if not self.pk or Usuario.objects.filter(pk=self.pk, password=self.password).exists():
             self.password = make_password(self.password)
-        super().save(*args, **kwargs)
+        super().save(*args, **kwargs) #HACE EL HASHEO 
 
     def check_password(self, raw_password):
-        return check_password(raw_password, self.password)
+        return check_password(raw_password, self.password) #VERIFICA PASSWORD
 
     def __str__(self):
         return self.nombre_usuario
+
 
 
 

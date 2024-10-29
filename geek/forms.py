@@ -1,36 +1,43 @@
+from typing import Any
 from django import forms
 from .models import Usuario, Producto
 
-class UsuarioForm(forms.ModelForm):
+class RegistroForm(forms.ModelForm):
     class Meta:
         model = Usuario
-        fields = ['nombre_usuario', 'correo', 'password', 'telefono']
-        widgets = {
-            'password': forms.PasswordInput(),
-        }
+        fields = ['nombre_usuario', 'correo', 'password','telefono']
 
+    def clean_nombre_usuario(self):
+        nombre_usuario = self.cleaned_data.get('nombre_usuario')
+        if Usuario.objects.filter(nombre_usuario=nombre_usuario).exists():
+            raise forms.ValidationError("nombre de usuario ya existente!!")
+        return nombre_usuario
+    
+    def clean_correo(self):
+        correo = self.cleaned_data.get('correo')
+        if Usuario.objects.filter(correo=correo).exists():
+            raise forms.ValidationError("Correo ya existe!!")
+        return correo
+    
+    def clean_telefono(self):
+        telefono = self.cleaned_data.get('telefono')
+        if len(telefono) != 9 or not telefono.isdigit():
+            raise forms.ValidationError('El teléfono debe tener 9 dígitos numéricos.')
+        return telefono
+    
     def clean(self):
         cleaned_data = super().clean()
-        nombre_usuario = cleaned_data.get('nombre_usuario')
-        correo = cleaned_data.get('correo')
+        password = cleaned_data.get('password')
 
-        if Usuario.objects.filter(nombre_usuario=nombre_usuario).exists():
-            self.add_error('nombre_usuario', '¡Nombre de Usuario Ya en Uso!')
+        # Validar que no haya espacios en blanco
+        if password and ' ' in password:
+            raise forms.ValidationError('La contraseña no puede contener espacios en blanco.')
 
-        if Usuario.objects.filter(correo=correo).exists():
-            self.add_error('correo', '¡Correo Ya en Uso!')
-
+        # Validar que la contraseña tenga al menos un número y una letra
+        if password and (not any(char.isdigit() for char in password) or not any(char.isalpha() for char in password)):
+            raise forms.ValidationError('La contraseña debe contener al menos una letra y un número.')
 
         return cleaned_data
-
-    def clean_password(self):
-        password = self.cleaned_data.get('password')
-
-        if len (password) < 8:
-            raise forms.ValidationError('!La contraseña debe tener minimo 8 caracteres!')
-        if not any(char.isdigit() for char in password):
-            raise forms.ValidationError('!La contraseña debe tener al menos 1 numero!')
-        return password
 
 class ProductoForm(forms.ModelForm):
     TECNOLOGIA_CHOICES = {

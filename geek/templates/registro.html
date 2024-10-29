@@ -10,18 +10,15 @@
         <form id="registro" class="registro-form" method="POST">
             {% csrf_token %}
             <h2>Formulario de Registro</h2>
-            {{form.as_p}}
+            {{ form.as_p }}
             <button type="submit" class="btn btn-register">Registrarse</button>
 
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+            {% endfor %}
 
-            {% if form.errors %}
-            <ul>
-                {% for field, errors in form.errors.items %}
-                    <li>{{ field }}: {{ errors|striptags }}</li>
-                {% endfor %}
-            </ul>
-            {% endif %}
         </form>
     </div>
 </section>
+
 {% endblock %}

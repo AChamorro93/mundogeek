@@ -1,19 +1,23 @@
-from django.contrib.auth import authenticate, login
 from django.contrib import messages  
-
-
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView
 from django.views.generic import ListView
 from .models import Usuario, Producto
-from .forms import UsuarioForm, ProductoForm
+from .forms import RegistroForm, ProductoForm
 from django.urls import reverse_lazy
 
 class UsuarioCreateView(CreateView):
     model = Usuario
-    form_class = UsuarioForm
+    form_class = RegistroForm
     template_name = 'registro.html'
-    success_url = reverse_lazy('menuini')  
+    success_url = reverse_lazy('menuini') 
+    def form_valid(self, form):
+        messages.success(self.request,"Usuario registro correctamente")
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        messages.error(self.request,"ERROR, favor de verificar que todo este correcto")
+        return super().form_invalid(form) 
 
 class ProductoCreateView(CreateView):
     model = Producto
@@ -52,27 +56,29 @@ def accesorios(request):
 def carrito(request):
     return render(request, 'carrito.html')
 
-
-
 def inisesion(request):
-    if request.method == "POST":
-        email = request.POST.get('email')
+    if request.method =='POST':
+        correo = request.POST.get('correo')
         password = request.POST.get('password')
 
+        if not correo or not password:
+            messages.error(request,"favor de completar todos los campos")
+            return render(request, 'inisesion.html')
+        
         try:
-            usuario = Usuario.objects.get(correo=email)  # Buscar el usuario por correo
-            if usuario.check_password(password):  # Verificar la contraseña
-                # Almacenar el ID del usuario en la sesión
+            usuario = Usuario.objects.get(correo=correo) 
+            if usuario.check_password(password):  
                 request.session['usuario_id'] = usuario.id  
-                return redirect('menuini')  # Redirigir al menú principal
+                return redirect('menuini')  
+            else:
+                messages.error(request, "Correo o contraseña incorrectos.")  
         except Usuario.DoesNotExist:
-            pass  # El usuario no existe
+            messages.error(request, "Correo o contraseña incorrectos.")  
 
-        # Autenticación fallida
-        messages.error(request, "Correo o contraseña incorrectos")  # Mensaje de error
         return render(request, 'inisesion.html')
 
     return render(request, 'inisesion.html')
+
 
 
 def registro(request):
