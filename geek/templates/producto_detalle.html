@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Mundo Geek{% endblock %}
+
+{% block content %}
+<!-- producto_detail.html -->
+<section class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <!-- Imagen del producto -->
+                <img src="{{ producto.fotos.url }}" class="card-img-top img-fluid" alt="{{ producto.name }}">
+
+                <!-- Información del producto -->
+                <div class="card-body">
+                    <h2 class="card-title">{{ producto.name }}</h2>
+                    <p class="card-text">{{ producto.descrip }}</p>
+
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><strong>Precio:</strong> ${{ producto.precio }}</li>
+                        <li class="list-group-item"><strong>Cantidad:</strong> {{ producto.cantidad }}</li>
+                        <li class="list-group-item"><strong>Tecnología:</strong> {{ producto.tecnologia }}</li>
+                        <li class="list-group-item"><strong>Color:</strong> {{ producto.color }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}

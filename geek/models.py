@@ -28,7 +28,7 @@ class Producto(models.Model):
     tecnologia = models.CharField(max_length=50)
     descrip= models.CharField(max_length=1000)
     color = models.CharField(max_length=50)
-    fotos = models.ImageField(upload_to='producto', null=True)   
+    fotos = models.ImageField(upload_to='producto/', null=True)   
 
     def __str__(self):
         return self.name  

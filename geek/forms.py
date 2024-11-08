@@ -29,11 +29,11 @@ class RegistroForm(forms.ModelForm):
         cleaned_data = super().clean()
         password = cleaned_data.get('password')
 
-        # Validar que no haya espacios en blanco
+        # me valida que no haya espacios en blanco
         if password and ' ' in password:
             raise forms.ValidationError('La contraseña no puede contener espacios en blanco.')
 
-        # Validar que la contraseña tenga al menos un número y una letra
+        # validar que tenga una letra y numero
         if password and (not any(char.isdigit() for char in password) or not any(char.isalpha() for char in password)):
             raise forms.ValidationError('La contraseña debe contener al menos una letra y un número.')
 

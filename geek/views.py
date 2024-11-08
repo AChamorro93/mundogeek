@@ -1,7 +1,7 @@
 from django.contrib import messages  
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from .models import Usuario, Producto
 from .forms import RegistroForm, ProductoForm
 from django.urls import reverse_lazy
@@ -35,18 +35,23 @@ class ProductoListView(ListView):
         print(context['productos'])  # Esto imprimirá los productos en la consola
         return context
 
+class ProductoDetailView(DetailView):
+    model = Producto
+    template_name = 'producto_detalle.html'
+    context_object_name = 'producto'
 
 def base_view(request):
     return render(request, 'base.html')
 
 def menuini(request):
-    if 'usuario_id' not in request.session:
-        return redirect('inisesion')  # Redirigir a inicio de sesión si no está autenticado
+    # Eliminar la verificación de si el usuario está logueado
+    usuario = None  # Aquí puedes dejar esto vacío o colocar una condición para verificar si el usuario está logueado.
+    
+    if 'usuario_id' in request.session:
+        usuario_id = request.session['usuario_id']
+        usuario = Usuario.objects.get(id=usuario_id)
 
-    usuario_id = request.session['usuario_id']
-    usuario = Usuario.objects.get(id=usuario_id)
-
-    # Aquí puedes renderizar la plantilla o hacer lo que necesites
+    # Pasar el nombre de usuario al template solo si está logueado
     return render(request, 'menuini.html', {'usuario': usuario})
 
 

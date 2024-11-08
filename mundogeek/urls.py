@@ -1,7 +1,10 @@
 
 from django.contrib import admin
+from django.conf import settings
 from django.urls import path
 from geek import views
+from django.conf.urls.static import static
+
 
 
 urlpatterns = [
@@ -15,7 +18,8 @@ urlpatterns = [
     
     path('inisesion/', views.inisesion, name='inisesion'),
     path('registro/', views.UsuarioCreateView.as_view(), name='registro'),
-    path('proform/', views.ProductoCreateView.as_view(), name='proform'), 
+    path('proform/', views.ProductoCreateView.as_view(), name='proform'),
+    path('producto/<int:pk>/', views.ProductoDetailView.as_view(), name='producto_detalle'), 
 
     path('productos/', views.ProductoListView.as_view(), name='pronue'),
 
@@ -28,4 +32,4 @@ urlpatterns = [
     path('polpri/', views.polpri, name='polpri'),
     path('prefre/', views.prefre, name='prefre'),
 
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
