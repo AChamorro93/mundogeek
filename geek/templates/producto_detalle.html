@@ -9,8 +9,25 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <!-- Imagen del producto -->
-                <img src="{{ producto.fotos.url }}" class="card-img-top img-fluid" alt="{{ producto.name }}">
+
+                <!-- Carrusel de imágenes del producto -->
+                <div id="carouselProducto" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        {% for imagen in producto.imagenes.all %}
+                            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                                <img src="{{ imagen.foto.url }}" class="d-block w-100" alt="{{ producto.name }}">
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselProducto" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselProducto" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
 
                 <!-- Información del producto -->
                 <div class="card-body">
@@ -28,6 +45,8 @@
         </div>
     </div>
 </section>
+
+
 
 
 {% endblock %}

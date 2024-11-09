@@ -18,17 +18,23 @@ class Usuario(models.Model):
     def __str__(self):
         return self.nombre_usuario
 
-
-
-
 class Producto(models.Model):
     name = models.CharField(max_length=120)
     precio = models.IntegerField()
     cantidad = models.IntegerField()
     tecnologia = models.CharField(max_length=50)
-    descrip= models.CharField(max_length=1000)
+    descrip = models.CharField(max_length=1000)
     color = models.CharField(max_length=50)
-    fotos = models.ImageField(upload_to='producto/', null=True)   
 
     def __str__(self):
         return self.name  
+
+
+class Imagen(models.Model):
+    producto = models.ForeignKey(Producto, on_delete=models.CASCADE, related_name='imagenes')
+    foto = models.ImageField(upload_to='producto/')
+
+    def __str__(self):
+        return f"Imagen de {self.producto.name}"
+
+

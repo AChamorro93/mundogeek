@@ -9,25 +9,30 @@
         <div class="row">
             {% for producto in productos %}
             <div class="col-md-4 mb-4">
-                <a href="{% url 'producto_detalle' producto.id %}" style="text-decoration: none; ">
+                <a href="{% url 'producto_detalle' producto.id %}" style="text-decoration: none;"> <!-- en este caso se busca el producto mediante el identificador que es unico -->
                     <div class="card" style="width: 18rem; background-color: rgba(75, 69, 69, 0.616);">
                         <div class="card-img-container" style="position: relative;">
-                            <img src="{{ producto.fotos.url }}" class="card-img-top" alt="{{ producto.name }}" style="object-fit: cover; height: 200px;">
+                            <!-- cree una condicion if para que se generen los diferentes card con las imagenes asociadas, encontrando la primera, ademas del nombre del producto -->
+                            {% if producto.imagenes.all %}
+                                <img src="{{ producto.imagenes.first.foto.url }}" class="card-img-top" alt="{{ producto.name }}" style="object-fit: cover; height: 200px;">
+                            {% else %}
+                                <img src="{{ producto.foto.url }}" class="card-img-top" alt="{{ producto.name }}" style="object-fit: cover; height: 200px;">
+                            {% endif %}
                             <div class="overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;"></div>
                         </div>
                         <div class="card-body" style="color: aliceblue;">
                             <h5 class="card-title">{{ producto.name }}</h5>
-                            <p class="card-text">{{ producto.descrip|truncatewords:20 }}</p>
                             <p class="card-text">Precio: ${{ producto.precio }}</p>
                         </div>
                     </div>
                 </a>
             </div>
             {% endfor %}
-        
         </div>
     </div>
 </section>
+
+
 
 
 

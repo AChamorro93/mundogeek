@@ -15,6 +15,12 @@ body {
 .nav-link, .dropdown-toggle {
     color: white; 
 }
+
+.nav-link:hover, .dropdown-toggle:hover {
+    color: yellow; /* Cambia a amarillo en hover */
+}
+
+
 /*----menuini--------- */
 #container1 {
     margin-right: auto;

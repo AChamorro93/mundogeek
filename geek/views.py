@@ -27,18 +27,23 @@ class ProductoCreateView(CreateView):
 
 class ProductoListView(ListView):
     model = Producto
-    template_name = 'pronue.html'
-    context_object_name = 'productos'
+    template_name = 'pronue.html'  # Aquí se especifica el nombre del template que usarás
+    context_object_name = 'productos'  # Se usará 'productos' en el template para acceder a la lista
 
     def get_context_data(self, **kwargs):
+        # Llamamos al método del padre para obtener el contexto base
         context = super().get_context_data(**kwargs)
-        print(context['productos'])  # Esto imprimirá los productos en la consola
         return context
 
 class ProductoDetailView(DetailView):
     model = Producto
-    template_name = 'producto_detalle.html'
-    context_object_name = 'producto'
+    template_name = 'producto_detalle.html'  # Asegúrate de tener este template creado
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Agregar las imágenes relacionadas al contexto
+        context['imagenes'] = self.object.imagenes.all()  # `imagenes` es el related_name en el modelo
+        return context
 
 def base_view(request):
     return render(request, 'base.html')
