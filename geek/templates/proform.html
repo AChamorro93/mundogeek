@@ -12,7 +12,6 @@
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
 
-            <!-- Campos del Formulario -->
             <div class="form-group">
                 <label>{{ form.name.label }}</label>
                 {{ form.name }}
@@ -26,31 +25,26 @@
                 {{ form.cantidad }}
             </div>
             
-            <!-- Tecnología (Radio Buttons) -->
             <div class="form-group">
                 <label>Tecnología</label><br>
                 {{ form.tecnologia }}
             </div>
 
-            <!-- Descripción -->
             <div class="form-group">
                 <label>{{ form.descrip.label }}</label>
                 {{ form.descrip }}
             </div>
 
-            <!-- Color (Radio Buttons) -->
             <div class="form-group">
                 <label>Color</label><br>
                 {{ form.color }}
             </div>
 
-            <!-- Fotos -->
             <div class="form-group">
                 <label>{{ form.fotos.label }}</label>
                 {{ form.fotos }}
             </div>
 
-            <!-- Botón de Enviar -->
             <div class="form-group">
                 <button type="submit" class="submit-btn">Agregar Producto</button>
             </div>

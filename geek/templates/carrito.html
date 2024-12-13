@@ -1,7 +1,43 @@
 {% extends 'base.html' %}
-{% load static %}
 
-{% block title %}Registrarse{% endblock %}
+{% block title %}Carrito de Compras{% endblock %}
+
 {% block content %}
+<h1>Carrito de compras</h1>
+<section>
+    <table style="background-color: rgba(27, 23, 57, 0.747);">
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Subtotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for producto in carrito.values %} 
+            <tr>
+                <td>{{ producto.nombre }}</td>
+                <td>${{ producto.precio }}</td>
+                <td>{{ producto.cantidad }}</td>
+                <td>${{ producto.subtotal }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+
+<h3>Total: ${{ total }}</h3>
+
+<form method="post" action="{% url 'vaciar_carrito' %}">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Vaciar carrito</button>
+</form>
+<h1>
+    <a href="https://www.webpay.cl/">
+        <button type="button" class="btn btn-success">PAGAR</button>
+    </a>
+</h1>
+
 
 {% endblock %}

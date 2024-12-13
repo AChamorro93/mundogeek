@@ -4,13 +4,11 @@
 {% block title %}Mundo Geek{% endblock %}
 
 {% block content %}
-<!-- producto_detail.html -->
 <section class="container my-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
 
-                <!-- Carrusel de imágenes del producto -->
                 <div id="carouselProducto" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
                         {% for imagen in producto.imagenes.all %}
@@ -29,7 +27,6 @@
                     </button>
                 </div>
 
-                <!-- Información del producto -->
                 <div class="card-body">
                     <h2 class="card-title">{{ producto.name }}</h2>
                     <p class="card-text">{{ producto.descrip }}</p>
@@ -40,11 +37,22 @@
                         <li class="list-group-item"><strong>Tecnología:</strong> {{ producto.tecnologia }}</li>
                         <li class="list-group-item"><strong>Color:</strong> {{ producto.color }}</li>
                     </ul>
+
+                    <!-- Este es un form en el que permite crear este objecto "carrito" -->
+                    <form method="post" action="{% url 'agregar_al_carrito' producto.id %}">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="cantidad" class="form-label" style="color: black;">Cantidad</label>
+                            <input type="number" class="form-control" id="cantidad" name="cantidad" value="1" min="1" max="{{ producto.cantidad }}" style="background-color: bisque; color: black;">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Agregar al carrito</button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
 
 
 
